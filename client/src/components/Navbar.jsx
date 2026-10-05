@@ -1,8 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
+
     const { totalItems } = useCart();
+    const { user, logout } = useAuth();
+
+    const navigate = useNavigate();
+
+
+    const handleLogout = () => {
+
+        logout();
+
+        navigate("/");
+
+    };
+
 
     return (
         <nav className="border-b bg-white">
@@ -19,7 +34,7 @@ function Navbar() {
                 </Link>
 
 
-                {/* Navigation */}
+                {/* Main Navigation */}
 
                 <div className="hidden gap-8 md:flex">
 
@@ -54,27 +69,75 @@ function Navbar() {
                 </div>
 
 
-                {/* Cart */}
+                {/* Account + Cart */}
 
-                <Link
-                    to="/cart"
-                    className="relative flex items-center gap-2"
-                >
-                    <span className="text-xl">
-                        🛒
-                    </span>
+                <div className="flex items-center gap-5">
 
-                    <span>
-                        Cart
-                    </span>
+                    {user ? (
 
-                    {totalItems > 0 && (
-                        <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-black px-1 text-xs text-white">
-                            {totalItems}
-                        </span>
+                        <>
+                        <Link
+                                 to="/profile"
+                                 className="hidden text-sm hover:text-gray-500 md:block"
+                                >
+                         Hi, {user.name}
+                        </Link>
+
+                            <button
+                                onClick={handleLogout}
+                                className="text-sm hover:text-gray-500"
+                            >
+                                Logout
+                            </button>
+                        </>
+
+                    ) : (
+
+                        <>
+                            <Link
+                                to="/login"
+                                className="text-sm hover:text-gray-500"
+                            >
+                                Login
+                            </Link>
+
+                            <Link
+                                to="/register"
+                                className="text-sm hover:text-gray-500"
+                            >
+                                Register
+                            </Link>
+                        </>
+
                     )}
 
-                </Link>
+
+                    {/* Cart */}
+
+                    <Link
+                        to="/cart"
+                        className="relative flex items-center gap-2"
+                    >
+
+                        <span className="text-xl">
+                            🛒
+                        </span>
+
+                        <span className="hidden md:block">
+                            Cart
+                        </span>
+
+                        {totalItems > 0 && (
+
+                            <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-black px-1 text-xs text-white">
+                                {totalItems}
+                            </span>
+
+                        )}
+
+                    </Link>
+
+                </div>
 
             </div>
 
