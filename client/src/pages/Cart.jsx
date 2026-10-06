@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 function Cart() {
@@ -9,6 +9,8 @@ function Cart() {
         decreaseQuantity,
         totalPrice,
     } = useCart();
+
+    const navigate = useNavigate();
 
     if (cartItems.length === 0) {
         return (
@@ -50,7 +52,7 @@ function Cart() {
 
                         {cartItems.map((item) => (
                             <div
-                                key={item._id}
+                                key={item.cartItemId}
                                 className="flex gap-5 rounded-lg bg-white p-5 shadow-sm"
                             >
 
@@ -67,14 +69,19 @@ function Cart() {
                                         <h2 className="text-lg font-semibold">
                                             {item.name}
                                         </h2>
-                                        <p className="mt-1 text-sm text-gray-500">
-                                                        Size: {item.selectedSize}
-                                            </p>
 
-                                            <p className="text-sm text-gray-500">
-                                                 Color: {item.selectedColor}
+                                        {item.selectedSize && (
+                                            <p className="mt-1 text-sm text-gray-500">
+                                                Size: {item.selectedSize}
                                             </p>
-                                            
+                                        )}
+
+                                        {item.selectedColor && (
+                                            <p className="text-sm text-gray-500">
+                                                Color: {item.selectedColor}
+                                            </p>
+                                        )}
+
                                         <p className="mt-1 text-gray-500">
                                             Rs. {item.price.toLocaleString()}
                                         </p>
@@ -164,7 +171,8 @@ function Cart() {
                         </div>
 
                         <button
-                            className="mt-6 w-full bg-black py-4 text-white"
+                            onClick={() => navigate("/checkout")}
+                            className="mt-6 w-full bg-black py-3 font-semibold text-white hover:bg-gray-800"
                         >
                             Proceed to Checkout
                         </button>

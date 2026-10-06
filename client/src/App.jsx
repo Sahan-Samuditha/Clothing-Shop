@@ -7,6 +7,10 @@ import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Checkout from "./pages/Checkout";
+import { useNavigate } from "react-router-dom";
+import Orders from "./pages/Orders";
 
 import Navbar from "./components/Navbar";
 
@@ -33,7 +37,10 @@ function App() {
 
                         <Route
                             path="/cart"
-                            element={<Cart />}
+                            element={<Cart
+                                
+                                />}
+                            
                         />
 
                         <Route
@@ -47,7 +54,27 @@ function App() {
                         />
                         <Route
                             path="/profile"
-                            element={<Profile />}
+                            element={
+                                    <ProtectedRoute>
+                                        <Profile />
+                                </ProtectedRoute>
+                        }
+                        />
+                        <Route
+                            path="/checkout"
+                            element={
+                                 <ProtectedRoute>
+                                <Checkout />
+                                </ProtectedRoute>
+                        }
+                        />
+                        <Route
+                            path="/orders"
+                            element={
+                                <ProtectedRoute>
+                                    <Orders />
+                                  </ProtectedRoute>
+                                 }
                         />
                     </Routes>
 

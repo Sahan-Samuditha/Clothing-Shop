@@ -53,14 +53,14 @@ function Navbar() {
                     </Link>
 
                     <Link
-                        to="/shop"
+                        to="/shop?category=Men"
                         className="hover:text-gray-500"
                     >
                         Men
                     </Link>
 
                     <Link
-                        to="/shop"
+                         to="/shop?category=Women"
                         className="hover:text-gray-500"
                     >
                         Women
@@ -81,6 +81,12 @@ function Navbar() {
                                  className="hidden text-sm hover:text-gray-500 md:block"
                                 >
                          Hi, {user.name}
+                        </Link>
+                        <Link
+                            to="/orders"
+                           className="hidden text-sm hover:text-gray-500 md:block"
+                        >
+                           My Orders
                         </Link>
 
                             <button
