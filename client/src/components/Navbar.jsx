@@ -20,7 +20,7 @@ function Navbar() {
 
 
     return (
-        <nav className="border-b bg-white">
+        <nav className="border-b bg-white ">
 
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
 
@@ -126,7 +126,10 @@ function Navbar() {
                     >
 
                         <span className="text-xl">
-                            🛒
+                            <img
+                                src="https://img.icons8.com/ios-filled/24/000000/shopping-cart.png"
+                                alt="cart"
+                            />
                         </span>
 
                         <span className="hidden md:block">

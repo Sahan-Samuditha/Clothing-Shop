@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@keyframes heroZoomOut {
+    from {
+        transform: scale(1.15);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.hero-bg-zoom {
+    animation: heroZoomOut 2s ease-out forwards;
+}

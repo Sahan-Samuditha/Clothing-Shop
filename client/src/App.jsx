@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import Orders from "./pages/Orders";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
@@ -78,9 +79,12 @@ function App() {
                         />
                     </Routes>
 
+                    <Footer />
+
                 </BrowserRouter>
             </CartProvider>
         </AuthProvider>
+        
     );
 }
 

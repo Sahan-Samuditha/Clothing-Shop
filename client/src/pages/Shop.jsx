@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { getProducts } from "../services/productService";
 
@@ -8,12 +9,32 @@ function Shop() {
 
     const [search, setSearch] = useState("");
 
-    const [category, setCategory] = useState("All");
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const [category, setCategory] = useState(
+        searchParams.get("category") || "All"
+    );
 
     const [loading, setLoading] = useState(true);
 
     const [error, setError] = useState("");
 
+
+    // Read category from URL
+    useEffect(() => {
+
+        const urlCategory = searchParams.get("category");
+
+        if (urlCategory) {
+            setCategory(urlCategory);
+        } else {
+            setCategory("All");
+        }
+
+    }, [searchParams]);
+
+
+    // Load products
     useEffect(() => {
 
         const loadProducts = async () => {
@@ -27,6 +48,7 @@ function Shop() {
             } catch (error) {
 
                 console.error(error);
+
                 setError(
                     "Products could not be loaded. Please make sure the API server and database are running."
                 );
@@ -43,6 +65,28 @@ function Shop() {
 
     }, []);
 
+
+    // Handle category change
+    const handleCategoryChange = (e) => {
+
+        const selectedCategory = e.target.value;
+
+        setCategory(selectedCategory);
+
+        if (selectedCategory === "All") {
+
+            setSearchParams({});
+
+        } else {
+
+            setSearchParams({
+                category: selectedCategory,
+            });
+
+        }
+    };
+
+
     // Search + Category filtering
     const filteredProducts = products.filter((product) => {
 
@@ -58,6 +102,7 @@ function Shop() {
         return matchesSearch && matchesCategory;
     });
 
+
     return (
         <div className="min-h-screen bg-gray-50">
 
@@ -66,7 +111,9 @@ function Shop() {
             <section className="bg-black px-8 py-16 text-center text-white">
 
                 <h1 className="text-4xl font-bold">
-                    Shop
+                    {category === "All"
+                        ? "Shop"
+                        : `${category}'s Collection`}
                 </h1>
 
                 <p className="mt-3 text-gray-300">
@@ -97,7 +144,7 @@ function Shop() {
 
                     <select
                         value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={handleCategoryChange}
                         className="rounded-lg border px-4 py-3"
                     >
 
@@ -138,9 +185,13 @@ function Shop() {
                     </p>
                 )}
 
+
                 {!loading && error && (
+
                     <div className="mx-auto max-w-xl rounded-lg border border-red-200 bg-red-50 p-6 text-center text-red-700">
+
                         <p>{error}</p>
+
                         <button
                             type="button"
                             onClick={() => window.location.reload()}
@@ -148,34 +199,41 @@ function Shop() {
                         >
                             Try Again
                         </button>
-                    </div>
-                )}
-
-                {!loading && !error && filteredProducts.length === 0 && (
-
-                    <p className="text-center text-gray-500">
-                        No products found.
-                    </p>
-
-                )}
-
-
-                {!loading && !error && filteredProducts.length > 0 && (
-
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-
-                        {filteredProducts.map((product) => (
-
-                            <ProductCard
-                                key={product._id}
-                                product={product}
-                            />
-
-                        ))}
 
                     </div>
 
                 )}
+
+
+                {!loading &&
+                    !error &&
+                    filteredProducts.length === 0 && (
+
+                        <p className="text-center text-gray-500">
+                            No products found.
+                        </p>
+
+                    )}
+
+
+                {!loading &&
+                    !error &&
+                    filteredProducts.length > 0 && (
+
+                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+                            {filteredProducts.map((product) => (
+
+                                <ProductCard
+                                    key={product._id}
+                                    product={product}
+                                />
+
+                            ))}
+
+                        </div>
+
+                    )}
 
             </section>
 
