@@ -36,6 +36,24 @@
     animation: heroModelRise 1.2s ease-out forwards;
 }
 
+@keyframes heroLeftImageEnter {
+    from {
+        transform: translateX(-140px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.hero-left-image {
+    transform: translateX(-140px);
+}
+
+.hero-left-image.hero-model-rise-active {
+    animation: heroLeftImageEnter 1.2s 0.2s ease-out forwards;
+}
+
 @keyframes heroShopActionSlide {
     0% {
         transform: translateX(0);

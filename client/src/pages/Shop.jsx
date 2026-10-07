@@ -108,9 +108,18 @@ function Shop() {
 
             {/* Header */}
 
-            <section className="bg-black px-8 py-16 text-center text-white">
+            <section className="relative overflow-hidden border-b border-white/10 px-8 py-16 text-center text-white">
 
-                <h1 className="text-4xl font-bold">
+                <div className="absolute inset-0 bg-[url('https://tse4.mm.bing.net/th/id/OIP.SLWtElcslY-4pa9cLZzppQHaEJ?r=0&rs=1&pid=ImgDetMain&o=7&rm=3')] bg-cover bg-center" />
+                <div className="absolute inset-0 bg-black/45" />
+
+                <div className="relative">
+
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
+                    STYLEHUB COLLECTIONS
+                </p>
+
+                <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
                     {category === "All"
                         ? "Shop"
                         : `${category}'s Collection`}
@@ -120,6 +129,8 @@ function Shop() {
                     Find your perfect style
                 </p>
 
+                </div>
+
             </section>
 
 
@@ -127,7 +138,7 @@ function Shop() {
 
             <section className="px-8 py-10">
 
-                <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row">
+                <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-3xl border border-white/20 bg-white/10 p-4 shadow-[0_16px_40px_rgba(0,0,0,0.2)] backdrop-blur-xl md:flex-row">
 
                     {/* Search */}
 
@@ -136,7 +147,7 @@ function Shop() {
                         placeholder="Search products..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="flex-1 rounded-lg border px-4 py-3 outline-none focus:border-black"
+                        className="flex-1 rounded-xl border border-white/25 bg-white/90 px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-500 focus:border-white focus:ring-4 focus:ring-white/20"
                     />
 
 
@@ -145,7 +156,7 @@ function Shop() {
                     <select
                         value={category}
                         onChange={handleCategoryChange}
-                        className="rounded-lg border px-4 py-3"
+                        className="rounded-xl border border-white/25 bg-white/90 px-4 py-3 text-gray-900 outline-none transition focus:border-white focus:ring-4 focus:ring-white/20"
                     >
 
                         <option value="All">
@@ -180,7 +191,7 @@ function Shop() {
             <section className="mx-auto max-w-6xl px-8 pb-16">
 
                 {loading && (
-                    <p className="text-center">
+                    <p className="text-center text-white/80">
                         Loading products...
                     </p>
                 )}
@@ -209,7 +220,7 @@ function Shop() {
                     !error &&
                     filteredProducts.length === 0 && (
 
-                        <p className="text-center text-gray-500">
+                        <p className="text-center text-white/70">
                             No products found.
                         </p>
 

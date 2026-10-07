@@ -14,9 +14,10 @@ function Cart() {
 
     if (cartItems.length === 0) {
         return (
-            <div className="min-h-screen px-8 py-20 text-center">
+            <div className="min-h-screen bg-gray-50 px-8 py-20 text-center">
 
-                <h1 className="text-4xl font-bold">
+                <div className="mx-auto max-w-lg rounded-2xl bg-white p-10 shadow-md">
+                <h1 className="text-4xl font-bold tracking-tight">
                     Your Cart is Empty
                 </h1>
 
@@ -26,23 +27,32 @@ function Cart() {
 
                 <Link
                     to="/shop"
-                    className="mt-8 inline-block bg-black px-8 py-3 text-white"
+                    className="mt-8 inline-block rounded-xl bg-gray-900 px-8 py-3 font-semibold text-white transition hover:bg-black"
                 >
                     Continue Shopping
                 </Link>
+                </div>
 
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 px-8 py-12">
+        <div className="min-h-screen bg-gray-50 px-4 py-8 sm:px-8 sm:py-12">
 
             <div className="mx-auto max-w-6xl">
 
-                <h1 className="mb-10 text-4xl font-bold">
+                <div className="mb-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gray-500">
+                    STYLEHUB
+                </p>
+                <h1 className="mt-2 text-4xl font-bold tracking-tight">
                     Shopping Cart
                 </h1>
+                <p className="mt-2 text-gray-500">
+                    Review your selected items before checkout.
+                </p>
+                </div>
 
                 <div className="grid gap-8 lg:grid-cols-3">
 
@@ -53,20 +63,20 @@ function Cart() {
                         {cartItems.map((item) => (
                             <div
                                 key={item.cartItemId}
-                                className="flex gap-5 rounded-lg bg-white p-5 shadow-sm"
+                                className="flex gap-4 rounded-2xl bg-white p-4 shadow-md transition hover:shadow-lg sm:gap-5 sm:p-5"
                             >
 
                                 <img
                                     src={item.image}
                                     alt={item.name}
-                                    className="h-32 w-28 object-cover"
+                                    className="h-28 w-24 rounded-xl object-cover sm:h-32 sm:w-28"
                                 />
 
                                 <div className="flex flex-1 flex-col justify-between">
 
                                     <div>
 
-                                        <h2 className="text-lg font-semibold">
+                                        <h2 className="text-lg font-semibold tracking-tight">
                                             {item.name}
                                         </h2>
 
@@ -94,7 +104,7 @@ function Cart() {
                                             onClick={() =>
                                                 decreaseQuantity(item.cartItemId)
                                             }
-                                            className="border px-3 py-1"
+                                            className="rounded-lg border border-gray-200 px-3 py-1 transition hover:border-gray-900"
                                         >
                                             -
                                         </button>
@@ -107,7 +117,7 @@ function Cart() {
                                             onClick={() =>
                                                 increaseQuantity(item.cartItemId)
                                             }
-                                            className="border px-3 py-1"
+                                            className="rounded-lg border border-gray-200 px-3 py-1 transition hover:border-gray-900"
                                         >
                                             +
                                         </button>
@@ -130,7 +140,7 @@ function Cart() {
                                         onClick={() =>
                                             removeFromCart(item.cartItemId)
                                         }
-                                        className="text-sm text-red-500"
+                                        className="text-sm font-medium text-red-500 transition hover:text-red-700"
                                     >
                                         Remove
                                     </button>
@@ -144,7 +154,7 @@ function Cart() {
 
                     {/* Summary */}
 
-                    <div className="h-fit rounded-lg bg-white p-6 shadow-sm">
+                    <div className="h-fit rounded-2xl bg-white p-6 shadow-md lg:sticky lg:top-24">
 
                         <h2 className="text-2xl font-bold">
                             Order Summary
@@ -172,14 +182,14 @@ function Cart() {
 
                         <button
                             onClick={() => navigate("/checkout")}
-                            className="mt-6 w-full bg-black py-3 font-semibold text-white hover:bg-gray-800"
+                            className="mt-6 w-full rounded-xl bg-gray-900 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-black hover:shadow-lg"
                         >
                             Proceed to Checkout
                         </button>
 
                         <Link
                             to="/shop"
-                            className="mt-4 block text-center underline"
+                            className="mt-4 block text-center font-medium text-gray-600 transition hover:text-gray-900"
                         >
                             Continue Shopping
                         </Link>

@@ -62,7 +62,7 @@ function ProductDetails() {
     if (loading) {
 
         return (
-            <div className="p-10 text-center">
+            <div className="min-h-screen bg-stone-100 p-10 text-center">
                 Loading product...
             </div>
         );
@@ -73,7 +73,7 @@ function ProductDetails() {
     if (!product) {
 
         return (
-            <div className="p-10 text-center">
+            <div className="min-h-screen bg-stone-100 p-10 text-center">
 
                 <h2 className="text-2xl font-bold">
                     Product not found
@@ -81,7 +81,7 @@ function ProductDetails() {
 
                 <Link
                     to="/shop"
-                    className="mt-5 inline-block bg-black px-6 py-3 text-white"
+                    className="mt-5 inline-block rounded-full bg-gray-900 px-6 py-3 font-semibold text-white transition hover:bg-black"
                 >
                     Back to Shop
                 </Link>
@@ -108,19 +108,19 @@ function ProductDetails() {
 
     return (
 
-        <div className="min-h-screen bg-white px-6 py-12">
+        <div className="min-h-screen bg-gray-50 px-4 py-8 sm:px-6 sm:py-12">
 
-            <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
+            <div className="mx-auto grid max-w-6xl overflow-hidden rounded-2xl bg-white p-2 shadow-md md:grid-cols-2 md:gap-8 md:p-3">
 
 
                 {/* Product Image */}
 
-                <div>
+                <div className="overflow-hidden rounded-xl">
 
                     <img
                         src={product.image}
                         alt={product.name}
-                        className="h-[600px] w-full object-cover"
+                        className="h-[460px] w-full rounded-xl object-cover transition duration-300 hover:scale-[1.01] sm:h-[600px]"
                     />
 
                 </div>
@@ -128,19 +128,19 @@ function ProductDetails() {
 
                 {/* Product Information */}
 
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col justify-center p-6 sm:p-9">
 
-                    <p className="text-sm uppercase tracking-widest text-gray-500">
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gray-500">
                         {product.category}
                     </p>
 
 
-                    <h1 className="mt-3 text-4xl font-bold">
+                    <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
                         {product.name}
                     </h1>
 
 
-                    <p className="mt-5 text-3xl font-bold">
+                    <p className="mt-5 text-3xl font-bold text-gray-900">
                         Rs. {product.price.toLocaleString()}
                     </p>
 
@@ -167,8 +167,8 @@ function ProductDetails() {
                                     onClick={() => setSelectedSize(size)}
                                     className={`border px-5 py-2 ${
                                         selectedSize === size
-                                            ? "bg-black text-white"
-                                            : "hover:bg-gray-100"
+                                            ? "border-gray-900 bg-gray-900 text-white shadow-md"
+                                            : "border-gray-200 bg-white hover:border-gray-900 hover:bg-gray-50"
                                     }`}
                                 >
                                     {size}
@@ -198,8 +198,8 @@ function ProductDetails() {
                                     onClick={() => setSelectedColor(color)}
                                     className={`rounded-full border px-5 py-2 ${
                                         selectedColor === color
-                                            ? "bg-black text-white"
-                                            : "bg-gray-100"
+                                            ? "border-gray-900 bg-gray-900 text-white shadow-md"
+                                            : "border-gray-200 bg-gray-100 hover:border-gray-900"
                                     }`}
                                 >
                                     {color}
@@ -228,7 +228,7 @@ function ProductDetails() {
                                         Math.max(1, quantity - 1)
                                     )
                                 }
-                                className="border px-4 py-2"
+                                className="rounded-lg border border-gray-200 bg-white px-4 py-2 transition hover:border-gray-900"
                             >
                                 -
                             </button>
@@ -246,7 +246,7 @@ function ProductDetails() {
                                         )
                                     )
                                 }
-                                className="border px-4 py-2"
+                                className="rounded-lg border border-gray-200 bg-white px-4 py-2 transition hover:border-gray-900"
                             >
                                 +
                             </button>
@@ -270,7 +270,7 @@ function ProductDetails() {
                     <button
                         onClick={handleAddToCart}
                         disabled={product.stock === 0}
-                        className="mt-5 w-full bg-black py-4 text-white hover:bg-gray-800 disabled:bg-gray-400"
+                        className="mt-5 w-full rounded-xl bg-gray-900 py-4 font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-black hover:shadow-xl disabled:bg-gray-400"
                     >
                         Add to Cart
                     </button>
@@ -278,7 +278,7 @@ function ProductDetails() {
 
                     <Link
                         to="/shop"
-                        className="mt-4 text-center underline"
+                        className="mt-4 text-center font-medium text-gray-600 transition hover:text-gray-900"
                     >
                         ← Continue Shopping
                     </Link>

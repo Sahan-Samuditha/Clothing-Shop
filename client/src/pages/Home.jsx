@@ -109,7 +109,7 @@ function Home() {
 
             {/* Hero */}
 
-            <section className="relative min-h-[600px] overflow-hidden">
+            <section className="relative -mt-5 min-h-[600px] overflow-hidden">
 
                 {/* Background Image Only */}
                 <ScrollAnimatedBackground
@@ -122,6 +122,13 @@ function Home() {
 
                 {/* Dark Overlay */}
                 <div className="absolute inset-0 bg-black/20" />
+
+                {/* Animated Side Image */}
+                <ScrollAnimatedImage
+                    src="https://pngimg.com/images/dress_PNG56170.png"
+                    alt="Fashion dress"
+                    className="hero-left-image absolute bottom-0 left-0 hidden h-72 w-56 object-contain object-bottom md:block lg:h-96 lg:w-72"
+                />
 
                 {/* Hero Content */}
                 <div className="relative z-10 px-8 py-32 text-center">
