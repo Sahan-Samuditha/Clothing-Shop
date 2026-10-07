@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 
@@ -20,7 +20,7 @@ function Navbar() {
 
 
     return (
-        <nav className="border-b bg-white ">
+        <nav className="border-b bg-gray-100/50 backdrop-blur-xl">
 
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
 
@@ -38,33 +38,58 @@ function Navbar() {
 
                 <div className="hidden gap-8 md:flex">
 
-                    <Link
+                    <NavLink
                         to="/"
-                        className="hover:text-gray-500"
+                        end
+                        className={({ isActive }) =>
+                            `rounded-full border px-4 py-2 backdrop-blur-xl transition-all duration-300 ${
+                                isActive
+                                    ? "border-gray-900/20 bg-white/75 text-gray-900 shadow-[0_12px_28px_rgba(15,23,42,0.16),inset_0_1px_0_rgba(255,255,255,1)]"
+                                    : "border-white/70 bg-white/35 shadow-[0_8px_24px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] hover:-translate-y-0.5 hover:bg-white/55 hover:text-gray-600 hover:shadow-[0_12px_28px_rgba(15,23,42,0.12),inset_0_1px_0_rgba(255,255,255,1)]"
+                            }`
+                        }
                     >
                         Home
-                    </Link>
+                    </NavLink>
 
-                    <Link
+                    <NavLink
                         to="/shop"
-                        className="hover:text-gray-500"
+                        className={({ isActive }) =>
+                            `rounded-full border px-4 py-2 backdrop-blur-xl transition-all duration-300 ${
+                                isActive
+                                    ? "border-gray-900/20 bg-white/75 text-gray-900 shadow-[0_12px_28px_rgba(15,23,42,0.16),inset_0_1px_0_rgba(255,255,255,1)]"
+                                    : "border-white/70 bg-white/35 shadow-[0_8px_24px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] hover:-translate-y-0.5 hover:bg-white/55 hover:text-gray-600 hover:shadow-[0_12px_28px_rgba(15,23,42,0.12),inset_0_1px_0_rgba(255,255,255,1)]"
+                            }`
+                        }
                     >
                         Shop
-                    </Link>
+                    </NavLink>
 
-                    <Link
+                    <NavLink
                         to="/shop?category=Men"
-                        className="hover:text-gray-500"
+                        className={({ isActive }) =>
+                            `rounded-full border px-4 py-2 backdrop-blur-xl transition-all duration-300 ${
+                                isActive
+                                    ? "border-gray-900/20 bg-white/75 text-gray-900 shadow-[0_12px_28px_rgba(15,23,42,0.16),inset_0_1px_0_rgba(255,255,255,1)]"
+                                    : "border-white/70 bg-white/35 shadow-[0_8px_24px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] hover:-translate-y-0.5 hover:bg-white/55 hover:text-gray-600 hover:shadow-[0_12px_28px_rgba(15,23,42,0.12),inset_0_1px_0_rgba(255,255,255,1)]"
+                            }`
+                        }
                     >
                         Men
-                    </Link>
+                    </NavLink>
 
-                    <Link
-                         to="/shop?category=Women"
-                        className="hover:text-gray-500"
+                    <NavLink
+                        to="/shop?category=Women"
+                        className={({ isActive }) =>
+                            `rounded-full border px-4 py-2 backdrop-blur-xl transition-all duration-300 ${
+                                isActive
+                                    ? "border-gray-900/20 bg-white/75 text-gray-900 shadow-[0_12px_28px_rgba(15,23,42,0.16),inset_0_1px_0_rgba(255,255,255,1)]"
+                                    : "border-white/70 bg-white/35 shadow-[0_8px_24px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] hover:-translate-y-0.5 hover:bg-white/55 hover:text-gray-600 hover:shadow-[0_12px_28px_rgba(15,23,42,0.12),inset_0_1px_0_rgba(255,255,255,1)]"
+                            }`
+                        }
                     >
                         Women
-                    </Link>
+                    </NavLink>
 
                 </div>
 
